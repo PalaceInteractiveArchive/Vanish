@@ -39,7 +39,7 @@ public class VanishUtil {
         player.sendMessage(ChatColor.DARK_AQUA + "You have become visible.");
         for (CPlayer tp : Core.getPlayerManager().getOnlinePlayers()) {
             tp.showPlayer(player);
-            if (player.getRank().getRankId() >= Rank.SPECIALGUEST.getRankId() &&
+            if (tp.getRank().getRankId() >= Rank.SPECIALGUEST.getRankId() &&
                     !tp.getUniqueId().equals(player.getUniqueId())) {
                 tp.sendMessage(ChatColor.YELLOW + player.getName() + " has become visible.");
             }
