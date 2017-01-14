@@ -1,17 +1,23 @@
 package network.palace.vanish;
 
 import lombok.Getter;
+import network.palace.core.Core;
+import network.palace.core.message.FormattedMessage;
+import network.palace.core.player.CPlayer;
+import network.palace.core.player.Rank;
 import network.palace.core.plugin.Plugin;
 import network.palace.core.plugin.PluginInfo;
 import network.palace.vanish.commands.Commandvanish;
 import network.palace.vanish.listeners.PlayerJoinAndLeave;
 import network.palace.vanish.utils.VanishUtil;
+import org.bukkit.ChatColor;
 
-@PluginInfo(name = "Vanish")
+import java.util.UUID;
+
+@PluginInfo(name = "Vanish", version = "1.0.1", depend = "Core", canReload = true)
 public class Vanish extends Plugin {
     private static Vanish instance;
-    @Getter
-    private VanishUtil vanishUtil;
+    @Getter private VanishUtil vanishUtil;
 
     @Override
     protected void onPluginEnable() throws Exception {
@@ -19,10 +25,21 @@ public class Vanish extends Plugin {
         vanishUtil = new VanishUtil();
         registerListener(new PlayerJoinAndLeave());
         registerCommand(new Commandvanish());
+        FormattedMessage msg = new FormattedMessage("The Vanish plugin has been enabled. " +
+                "If you would like to vanish, click this message or type /vanish.").color(ChatColor.GREEN)
+                .command("/vanish");
+        for (CPlayer p : Core.getPlayerManager().getOnlinePlayers()) {
+            if (p.getRank().getRankId() >= Rank.SPECIALGUEST.getRankId()) {
+                msg.send(p);
+            }
+        }
     }
 
     @Override
     protected void onPluginDisable() throws Exception {
+        for (UUID uuid : vanishUtil.getVanished()) {
+            vanishUtil.show(Core.getPlayerManager().getPlayer(uuid));
+        }
     }
 
     public static Vanish getInstance() {
