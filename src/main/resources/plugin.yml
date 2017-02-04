@@ -1,4 +1,0 @@
-name: Vanish
-version: 1.0
-depend: [Core]
-main: network.palace.vanish.Vanish
