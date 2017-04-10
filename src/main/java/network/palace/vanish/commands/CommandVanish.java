@@ -18,9 +18,9 @@ import java.util.UUID;
  */
 @CommandMeta(description = "Vanish from the view of settlers", aliases = "v")
 @CommandPermission(rank = Rank.SPECIALGUEST)
-public class Commandvanish extends CoreCommand {
+public class CommandVanish extends CoreCommand {
 
-    public Commandvanish() {
+    public CommandVanish() {
         super("vanish");
     }
 

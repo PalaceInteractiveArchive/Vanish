@@ -7,6 +7,7 @@
     <groupId>network.palace</groupId>
     <artifactId>Vanish</artifactId>
     <version>1.0.1</version>
+
     <repositories>
         <repository>
             <id>palace</id>
@@ -25,33 +26,12 @@
             <url>http://repo.dmulloy2.net/content/repositories/snapshots/</url>
         </repository>
     </repositories>
+
     <dependencies>
-        <dependency>
-            <groupId>org.json</groupId>
-            <artifactId>json</artifactId>
-            <version>20140107</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.spigotmc</groupId>
-            <artifactId>spigot-api</artifactId>
-            <version>1.11.2-R0.1-SNAPSHOT</version>
-        </dependency>
         <dependency>
             <groupId>network.palace</groupId>
             <artifactId>core</artifactId>
-            <version>1.6.5</version>
-        </dependency>
-        <dependency>
-            <groupId>com.comphenix.protocol</groupId>
-            <artifactId>ProtocolLib-API</artifactId>
-            <version>4.1.0</version>
-        </dependency>
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <version>1.16.10</version>
-            <type>jar</type>
+            <version>1.7.1</version>
         </dependency>
     </dependencies>
 

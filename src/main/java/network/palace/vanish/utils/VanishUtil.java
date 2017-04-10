@@ -13,6 +13,7 @@ import java.util.UUID;
  * Created by Marc on 12/16/16.
  */
 public class VanishUtil {
+
     private List<UUID> hidden = new ArrayList<>();
 
     public void hide(CPlayer player) {
