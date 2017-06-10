@@ -1,6 +1,8 @@
 package network.palace.vanish.listeners;
 
+import network.palace.core.Core;
 import network.palace.core.events.CorePlayerJoinedEvent;
+import network.palace.core.player.CPlayer;
 import network.palace.core.player.Rank;
 import network.palace.vanish.Vanish;
 import org.bukkit.Bukkit;
@@ -40,7 +42,9 @@ public class PlayerJoinAndLeave implements Listener {
         quit(event.getPlayer());
     }
 
-    private void quit(Player player) {
-        Vanish.getInstance().getVanishUtil().logout(player.getUniqueId());
+    private void quit(Player bukkitPlayer) {
+        CPlayer player = Core.getPlayerManager().getPlayer(bukkitPlayer);
+        if (player == null) return;
+        Vanish.getInstance().getVanishUtil().logout(player);
     }
 }

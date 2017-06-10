@@ -6,24 +6,12 @@
 
     <groupId>network.palace</groupId>
     <artifactId>Vanish</artifactId>
-    <version>1.0.1</version>
+    <version>1.0.2</version>
 
     <repositories>
         <repository>
             <id>palace</id>
             <url>https://repo.palace.network/nexus/content/repositories/releases/</url>
-        </repository>
-        <repository>
-            <id>spigot-repo</id>
-            <url>https://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>
-        </repository>
-        <repository>
-            <id>dmulloy2-releases</id>
-            <url>http://repo.dmulloy2.net/content/repositories/releases/</url>
-        </repository>
-        <repository>
-            <id>dmulloy2-snapshots</id>
-            <url>http://repo.dmulloy2.net/content/repositories/snapshots/</url>
         </repository>
     </repositories>
 
@@ -31,7 +19,7 @@
         <dependency>
             <groupId>network.palace</groupId>
             <artifactId>core</artifactId>
-            <version>1.7.1</version>
+            <version>1.7.8</version>
         </dependency>
     </dependencies>
 
