@@ -1,5 +1,6 @@
 package network.palace.vanish.commands;
 
+import network.palace.core.Core;
 import network.palace.core.command.CommandException;
 import network.palace.core.command.CommandMeta;
 import network.palace.core.command.CommandPermission;
@@ -7,7 +8,6 @@ import network.palace.core.command.CoreCommand;
 import network.palace.core.player.CPlayer;
 import network.palace.core.player.Rank;
 import network.palace.vanish.Vanish;
-import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 
 import java.util.List;
@@ -34,7 +34,7 @@ public class CommandVanish extends CoreCommand {
             case "list":
                 List<UUID> vanished = Vanish.getInstance().getVanishUtil().getVanished();
                 StringBuilder list = new StringBuilder();
-                Bukkit.getOnlinePlayers().stream().filter(tp -> vanished.contains(tp.getUniqueId())).forEach(tp -> {
+                Core.getPlayerManager().getOnlinePlayers().stream().filter(tp -> vanished.contains(tp.getUniqueId())).forEach(tp -> {
                     if (list.length() > 0) {
                         list.append(ChatColor.DARK_AQUA);
                         list.append(", ");

@@ -18,7 +18,7 @@
     <dependencies>
         <dependency>
             <groupId>network.palace</groupId>
-            <artifactId>core</artifactId>
+            <artifactId>Core</artifactId>
             <version>1.7.8</version>
         </dependency>
     </dependencies>
