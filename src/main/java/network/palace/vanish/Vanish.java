@@ -7,7 +7,7 @@ import network.palace.core.player.CPlayer;
 import network.palace.core.player.Rank;
 import network.palace.core.plugin.Plugin;
 import network.palace.core.plugin.PluginInfo;
-import network.palace.vanish.commands.Commandvanish;
+import network.palace.vanish.commands.CommandVanish;
 import network.palace.vanish.listeners.PlayerJoinAndLeave;
 import network.palace.vanish.utils.VanishUtil;
 import org.bukkit.ChatColor;
@@ -16,15 +16,14 @@ import java.util.UUID;
 
 @PluginInfo(name = "Vanish", version = "1.0.3", depend = "Core", canReload = true)
 public class Vanish extends Plugin {
-    private static Vanish instance;
+
     @Getter private VanishUtil vanishUtil;
 
     @Override
     protected void onPluginEnable() throws Exception {
-        instance = this;
         vanishUtil = new VanishUtil();
         registerListener(new PlayerJoinAndLeave());
-        registerCommand(new Commandvanish());
+        registerCommand(new CommandVanish());
         FormattedMessage msg = new FormattedMessage("The Vanish plugin has been enabled. " +
                 "If you would like to vanish, click this message or type /vanish.").color(ChatColor.GREEN)
                 .command("/vanish");
@@ -43,6 +42,6 @@ public class Vanish extends Plugin {
     }
 
     public static Vanish getInstance() {
-        return instance;
+        return Vanish.getPlugin(Vanish.class);
     }
 }

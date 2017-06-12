@@ -13,6 +13,7 @@ import java.util.UUID;
  * Created by Marc on 12/16/16.
  */
 public class VanishUtil {
+
     private List<UUID> hidden = new ArrayList<>();
 
     public void hide(CPlayer player) {
@@ -25,12 +26,12 @@ public class VanishUtil {
         if (!silent) {
             player.sendMessage(ChatColor.DARK_AQUA + "You have vanished. Poof.");
         }
-        for (CPlayer tp : Core.getPlayerManager().getOnlinePlayers()) {
-            if (tp.getRank().getRankId() < Rank.SPECIALGUEST.getRankId()) {
-                tp.hidePlayer(player);
-            } else if (!tp.getUniqueId().equals(player.getUniqueId()) && !silent) {
-                tp.sendMessage(ChatColor.YELLOW + player.getName() + " has vanished. Poof.");
-                tp.showPlayer(player);
+        for (CPlayer onlinePlayer : Core.getPlayerManager().getOnlinePlayers()) {
+            if (onlinePlayer.getRank().getRankId() < Rank.SPECIALGUEST.getRankId()) {
+                onlinePlayer.hidePlayer(player);
+            } else if (!onlinePlayer.getUniqueId().equals(player.getUniqueId()) && !silent) {
+                onlinePlayer.sendMessage(ChatColor.YELLOW + player.getName() + " has vanished. Poof.");
+                onlinePlayer.showPlayer(player);
             }
         }
     }
@@ -38,11 +39,11 @@ public class VanishUtil {
     public void show(CPlayer player) {
         hidden.remove(player.getUniqueId());
         player.sendMessage(ChatColor.DARK_AQUA + "You have become visible.");
-        for (CPlayer tp : Core.getPlayerManager().getOnlinePlayers()) {
-            tp.showPlayer(player);
-            if (tp.getRank().getRankId() >= Rank.SPECIALGUEST.getRankId() &&
-                    !tp.getUniqueId().equals(player.getUniqueId())) {
-                tp.sendMessage(ChatColor.YELLOW + player.getName() + " has become visible.");
+        for (CPlayer onlinePlayer : Core.getPlayerManager().getOnlinePlayers()) {
+            onlinePlayer.showPlayer(player);
+            if (onlinePlayer.getRank().getRankId() >= Rank.SPECIALGUEST.getRankId() &&
+                    !onlinePlayer.getUniqueId().equals(player.getUniqueId())) {
+                onlinePlayer.sendMessage(ChatColor.YELLOW + player.getName() + " has become visible.");
             }
         }
     }
@@ -63,7 +64,7 @@ public class VanishUtil {
         return new ArrayList<>(hidden);
     }
 
-    public void logout(UUID uuid) {
-        hidden.remove(uuid);
+    public void logout(CPlayer player) {
+        hidden.removeIf(entry -> entry.equals(player.getUuid()));
     }
 }

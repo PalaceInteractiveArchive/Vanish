@@ -7,6 +7,7 @@
     <groupId>network.palace</groupId>
     <artifactId>Vanish</artifactId>
     <version>1.0.3</version>
+
     <repositories>
         <repository>
             <id>palace</id>
@@ -17,18 +18,8 @@
             <url>https://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>
         </repository>
     </repositories>
+
     <dependencies>
-        <dependency>
-            <groupId>org.json</groupId>
-            <artifactId>json</artifactId>
-            <version>20140107</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.spigotmc</groupId>
-            <artifactId>spigot-api</artifactId>
-            <version>1.11.2-R0.1-SNAPSHOT</version>
-        </dependency>
         <dependency>
             <groupId>network.palace</groupId>
             <artifactId>Core</artifactId>
