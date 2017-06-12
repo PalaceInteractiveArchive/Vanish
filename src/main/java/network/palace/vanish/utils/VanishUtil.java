@@ -30,6 +30,7 @@ public class VanishUtil {
                 tp.hidePlayer(player);
             } else if (!tp.getUniqueId().equals(player.getUniqueId()) && !silent) {
                 tp.sendMessage(ChatColor.YELLOW + player.getName() + " has vanished. Poof.");
+                tp.showPlayer(player);
             }
         }
     }
