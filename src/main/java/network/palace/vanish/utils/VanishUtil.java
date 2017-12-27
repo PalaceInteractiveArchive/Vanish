@@ -3,7 +3,6 @@ package network.palace.vanish.utils;
 import network.palace.core.Core;
 import network.palace.core.player.CPlayer;
 import network.palace.core.player.Rank;
-import network.palace.vanish.Vanish;
 import org.bukkit.ChatColor;
 
 import java.util.ArrayList;
@@ -29,10 +28,12 @@ public class VanishUtil {
         }
         for (CPlayer onlinePlayer : Core.getPlayerManager().getOnlinePlayers()) {
             if (onlinePlayer.getRank().getRankId() < Rank.SPECIALGUEST.getRankId()) {
-                onlinePlayer.hidePlayer(Vanish.getInstance(), player);
+//                onlinePlayer.hidePlayer(Vanish.getInstance(), player);
+                onlinePlayer.hidePlayer(player);
             } else if (!onlinePlayer.getUniqueId().equals(player.getUniqueId()) && !silent) {
                 onlinePlayer.sendMessage(ChatColor.YELLOW + player.getName() + " has vanished. Poof.");
-                onlinePlayer.showPlayer(Vanish.getInstance(), player);
+//                onlinePlayer.showPlayer(Vanish.getInstance(), player);
+                onlinePlayer.showPlayer(player);
             }
         }
     }
@@ -41,7 +42,8 @@ public class VanishUtil {
         hidden.remove(player.getUniqueId());
         player.sendMessage(ChatColor.DARK_AQUA + "You have become visible.");
         for (CPlayer onlinePlayer : Core.getPlayerManager().getOnlinePlayers()) {
-            onlinePlayer.showPlayer(Vanish.getInstance(), player);
+//            onlinePlayer.showPlayer(Vanish.getInstance(), player);
+            onlinePlayer.showPlayer(player);
             if (onlinePlayer.getRank().getRankId() >= Rank.SPECIALGUEST.getRankId() &&
                     !onlinePlayer.getUniqueId().equals(player.getUniqueId())) {
                 onlinePlayer.sendMessage(ChatColor.YELLOW + player.getName() + " has become visible.");

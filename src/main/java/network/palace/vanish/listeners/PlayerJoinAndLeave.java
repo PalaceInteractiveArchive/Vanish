@@ -28,7 +28,9 @@ public class PlayerJoinAndLeave implements Listener {
             return;
         }
         for (UUID uuid : Vanish.getInstance().getVanishUtil().getVanished()) {
-            player.hidePlayer(Vanish.getInstance(), Core.getPlayerManager().getPlayer(uuid));
+//            player.hidePlayer(Vanish.getInstance(), Core.getPlayerManager().getPlayer(uuid));
+            CPlayer tp = Core.getPlayerManager().getPlayer(uuid);
+            if (tp != null) player.hidePlayer(tp);
         }
     }
 
