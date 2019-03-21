@@ -16,10 +16,6 @@ public class CheckCommand extends CoreCommand {
 
     @Override
     protected void handleCommand(CPlayer player, String[] args) throws CommandException {
-        if (Vanish.getInstance().getVanishUtil().isVanished(player.getUniqueId())) {
-            player.sendMessage(ChatColor.DARK_AQUA + "You are vanished.");
-        } else {
-            player.sendMessage(ChatColor.DARK_AQUA + "You are visible.");
-        }
+        player.sendMessage(ChatColor.DARK_AQUA + "You are " + (Vanish.getVanishUtil().isVanished(player.getUniqueId()) ? "vanished" : "visible") + ".");
     }
 }

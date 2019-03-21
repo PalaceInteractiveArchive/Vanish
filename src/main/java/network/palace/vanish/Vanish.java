@@ -14,13 +14,14 @@ import org.bukkit.ChatColor;
 
 import java.util.UUID;
 
-@PluginInfo(name = "Vanish", version = "1.0.6", depend = "Core", canReload = true)
+@PluginInfo(name = "Vanish", version = "1.1.0", depend = "Core", canReload = true)
 public class Vanish extends Plugin {
-
-    @Getter private VanishUtil vanishUtil;
+    @Getter private static Vanish instance;
+    @Getter private static VanishUtil vanishUtil;
 
     @Override
     protected void onPluginEnable() throws Exception {
+        instance = this;
         vanishUtil = new VanishUtil();
         registerListener(new PlayerJoinAndLeave());
         registerCommand(new VanishCommand());
@@ -39,9 +40,5 @@ public class Vanish extends Plugin {
         for (UUID uuid : vanishUtil.getVanished()) {
             vanishUtil.show(Core.getPlayerManager().getPlayer(uuid));
         }
-    }
-
-    public static Vanish getInstance() {
-        return Vanish.getPlugin(Vanish.class);
     }
 }
