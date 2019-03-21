@@ -20,7 +20,7 @@ public class ListCommand extends CoreCommand {
 
     @Override
     protected void handleCommand(CPlayer player, String[] args) throws CommandException {
-        List<UUID> vanished = Vanish.getInstance().getVanishUtil().getVanished();
+        List<UUID> vanished = Vanish.getVanishUtil().getVanished();
         StringBuilder list = new StringBuilder();
         Core.getPlayerManager().getOnlinePlayers().stream().filter(tp -> vanished.contains(tp.getUniqueId())).forEach(tp -> {
             if (list.length() > 0) {

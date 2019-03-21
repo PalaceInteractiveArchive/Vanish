@@ -11,8 +11,6 @@ import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerKickEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 
-import java.util.UUID;
-
 /**
  * Created by Marc on 12/23/16.
  */
@@ -23,15 +21,11 @@ public class PlayerJoinAndLeave implements Listener {
         CPlayer player = Core.getPlayerManager().getPlayer(event.getPlayer());
         if (player.getRank().getRankId() >= Rank.SPECIALGUEST.getRankId()) {
             if (player.getRank().getRankId() >= Rank.CHARACTER.getRankId()) {
-                Vanish.getInstance().getVanishUtil().hide(player, true);
+                Vanish.getVanishUtil().hide(player, true);
             }
             return;
         }
-        for (UUID uuid : Vanish.getInstance().getVanishUtil().getVanished()) {
-//            player.hidePlayer(Vanish.getInstance(), Core.getPlayerManager().getPlayer(uuid));
-            CPlayer tp = Core.getPlayerManager().getPlayer(uuid);
-            if (tp != null) player.hidePlayer(tp);
-        }
+        Vanish.getVanishUtil().login(player);
     }
 
     @EventHandler
@@ -47,6 +41,6 @@ public class PlayerJoinAndLeave implements Listener {
     private void quit(Player bukkitPlayer) {
         CPlayer player = Core.getPlayerManager().getPlayer(bukkitPlayer);
         if (player == null) return;
-        Vanish.getInstance().getVanishUtil().logout(player);
+        Vanish.getVanishUtil().logout(player);
     }
 }
