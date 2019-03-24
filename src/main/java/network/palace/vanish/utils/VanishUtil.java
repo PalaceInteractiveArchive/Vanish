@@ -63,7 +63,7 @@ public class VanishUtil {
     public void login(CPlayer player) {
         for (UUID uuid : getVanished()) {
             CPlayer tp = Core.getPlayerManager().getPlayer(uuid);
-            if (tp != null) player.hidePlayer(tp);
+            if (tp != null) player.hidePlayer(Vanish.getInstance(), tp);
         }
     }
 
