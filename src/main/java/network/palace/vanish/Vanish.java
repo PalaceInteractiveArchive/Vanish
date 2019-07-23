@@ -14,7 +14,7 @@ import org.bukkit.ChatColor;
 
 import java.util.UUID;
 
-@PluginInfo(name = "Vanish", version = "1.1.3", depend = "Core", canReload = true, apiversion = "1.13")
+@PluginInfo(name = "Vanish", version = "1.1.4", depend = "Core", canReload = true)
 public class Vanish extends Plugin {
     @Getter private static Vanish instance;
     @Getter private static VanishUtil vanishUtil;
