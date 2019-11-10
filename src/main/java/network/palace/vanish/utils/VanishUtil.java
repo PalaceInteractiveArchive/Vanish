@@ -15,6 +15,7 @@ import java.util.UUID;
  */
 public class VanishUtil {
     private List<UUID> hidden = new ArrayList<>();
+    private List<UUID> hiddenShareholders = new ArrayList<>();
 
     public void hide(CPlayer player) {
         hide(player, false);
@@ -28,6 +29,30 @@ public class VanishUtil {
                 onlinePlayer.hidePlayer(Vanish.getInstance(), player);
             } else if (!onlinePlayer.getUniqueId().equals(player.getUniqueId()) && !silent) {
                 onlinePlayer.sendMessage(ChatColor.YELLOW + player.getName() + " has vanished. Poof.");
+            }
+        }
+    }
+
+    public void hideShareholder(CPlayer player) {
+        hiddenShareholders.add(player.getUniqueId());
+        player.sendMessage(ChatColor.DARK_AQUA + "You are now invisible. Poof.");
+        for (CPlayer onlinePlayer : Core.getPlayerManager().getOnlinePlayers()) {
+            if (onlinePlayer.getRank().getRankId() < Rank.SHAREHOLDER.getRankId()) {
+                onlinePlayer.hidePlayer(Vanish.getInstance(), player);
+            } else if (!onlinePlayer.getUniqueId().equals(player.getUniqueId())) {
+                onlinePlayer.sendMessage(ChatColor.YELLOW + player.getName() + " is flying invisible.");
+            }
+        }
+    }
+
+    public void showShareholder(CPlayer player) {
+        player.sendMessage(ChatColor.DARK_AQUA + "You have become visible.");
+        hiddenShareholders.remove(player.getUniqueId());
+        for (CPlayer onlinePlayer : Core.getPlayerManager().getOnlinePlayers()) {
+            if (onlinePlayer.getRank().getRankId() < Rank.SHAREHOLDER.getRankId()) {
+                onlinePlayer.showPlayer(Vanish.getInstance(), player);
+            } else if (!onlinePlayer.getUniqueId().equals(player.getUniqueId())) {
+                onlinePlayer.sendMessage(ChatColor.YELLOW + player.getName() + " is no longer flying invisible.");
             }
         }
     }
@@ -57,13 +82,19 @@ public class VanishUtil {
     }
 
     public List<UUID> getVanished() {
-        return new ArrayList<>(hidden);
+        List<UUID> list = new ArrayList<>(hidden);
+        list.addAll(hiddenShareholders);
+        return list;
     }
 
     public void login(CPlayer player) {
+        boolean shareholder = player.getRank().equals(Rank.SHAREHOLDER);
         for (UUID uuid : getVanished()) {
             CPlayer tp = Core.getPlayerManager().getPlayer(uuid);
-            if (tp != null) player.hidePlayer(Vanish.getInstance(), tp);
+            if (tp != null) {
+                if (shareholder && tp.getRank().equals(Rank.SHAREHOLDER)) continue;
+                player.hidePlayer(Vanish.getInstance(), tp);
+            }
         }
     }
 

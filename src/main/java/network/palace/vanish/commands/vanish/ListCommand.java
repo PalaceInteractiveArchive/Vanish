@@ -5,6 +5,7 @@ import network.palace.core.command.CommandException;
 import network.palace.core.command.CommandMeta;
 import network.palace.core.command.CoreCommand;
 import network.palace.core.player.CPlayer;
+import network.palace.core.player.Rank;
 import network.palace.vanish.Vanish;
 import org.bukkit.ChatColor;
 
@@ -28,7 +29,7 @@ public class ListCommand extends CoreCommand {
                 list.append(", ");
             }
             list.append(ChatColor.AQUA);
-            list.append(tp.getName());
+            list.append(tp.getName()).append(tp.getRank().equals(Rank.SHAREHOLDER) ? ChatColor.LIGHT_PURPLE + "*" : "");
         });
         list.insert(0, "Vanished: ");
         list.insert(0, ChatColor.DARK_AQUA);
