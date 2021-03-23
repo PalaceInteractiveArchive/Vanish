@@ -15,7 +15,7 @@ import org.bukkit.ChatColor;
 
 import java.util.UUID;
 
-@PluginInfo(name = "Vanish", version = "1.1.6", depend = "Core", canReload = true)
+@PluginInfo(name = "Vanish", version = "1.1.7", depend = "Core", canReload = true)
 public class Vanish extends Plugin {
     @Getter private static Vanish instance;
     @Getter private static VanishUtil vanishUtil;
@@ -31,7 +31,7 @@ public class Vanish extends Plugin {
                 "If you would like to vanish, click this message or type /vanish.").color(ChatColor.GREEN)
                 .command("/vanish");
         for (CPlayer p : Core.getPlayerManager().getOnlinePlayers()) {
-            if (p.getRank().getRankId() >= Rank.SPECIALGUEST.getRankId()) {
+            if (p.getRank().getRankId() >= Rank.VIP.getRankId()) {
                 msg.send(p);
             }
         }
