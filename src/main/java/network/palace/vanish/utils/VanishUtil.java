@@ -25,7 +25,7 @@ public class VanishUtil {
         hidden.add(player.getUniqueId());
         if (!silent) player.sendMessage(ChatColor.DARK_AQUA + "You have vanished. Poof.");
         for (CPlayer onlinePlayer : Core.getPlayerManager().getOnlinePlayers()) {
-            if (onlinePlayer.getRank().getRankId() < Rank.SPECIALGUEST.getRankId()) {
+            if (onlinePlayer.getRank().getRankId() < Rank.VIP.getRankId()) {
                 onlinePlayer.hidePlayer(Vanish.getInstance(), player);
             } else if (!onlinePlayer.getUniqueId().equals(player.getUniqueId()) && !silent) {
                 onlinePlayer.sendMessage(ChatColor.YELLOW + player.getName() + " has vanished. Poof.");
@@ -61,7 +61,7 @@ public class VanishUtil {
         hidden.remove(player.getUniqueId());
         player.sendMessage(ChatColor.DARK_AQUA + "You have become visible.");
         for (CPlayer onlinePlayer : Core.getPlayerManager().getOnlinePlayers()) {
-            if (onlinePlayer.getRank().getRankId() < Rank.SPECIALGUEST.getRankId()) {
+            if (onlinePlayer.getRank().getRankId() < Rank.VIP.getRankId()) {
                 onlinePlayer.showPlayer(Vanish.getInstance(), player);
             } else if (!onlinePlayer.getUniqueId().equals(player.getUniqueId())) {
                 onlinePlayer.sendMessage(ChatColor.YELLOW + player.getName() + " has become visible.");

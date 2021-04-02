@@ -19,7 +19,7 @@ public class PlayerJoinAndLeave implements Listener {
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent event) {
         CPlayer player = Core.getPlayerManager().getPlayer(event.getPlayer());
-        if (player.getRank().getRankId() >= Rank.SPECIALGUEST.getRankId()) {
+        if (player.getRank().getRankId() >= Rank.VIP.getRankId()) {
             if (player.getRank().getRankId() >= Rank.CHARACTER.getRankId()) {
                 Vanish.getVanishUtil().hide(player, true);
             }

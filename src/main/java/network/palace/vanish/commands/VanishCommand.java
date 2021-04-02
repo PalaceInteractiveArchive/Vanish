@@ -12,7 +12,7 @@ import network.palace.vanish.commands.vanish.ListCommand;
 /**
  * Created by Marc on 12/16/16.
  */
-@CommandMeta(description = "Vanish from the view of players", aliases = "v", rank = Rank.SPECIALGUEST)
+@CommandMeta(description = "Vanish from the view of players", aliases = "v", rank = Rank.VIP)
 public class VanishCommand extends CoreCommand {
 
     public VanishCommand() {
